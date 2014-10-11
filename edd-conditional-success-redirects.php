@@ -3,7 +3,7 @@
 Plugin Name: Easy Digital Downloads - Conditional Success Redirects
 Plugin URI: http://sumobi.com/shop/edd-conditional-success-redirects/
 Description: Allows per-product confirmation pages on successful purchases
-Version: 1.0.3
+Version: 1.0.4
 Author: Andrew Munro, Sumobi
 Author URI: http://sumobi.com/
 */
@@ -58,7 +58,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 */
 		private function setup_globals() {
 
-			$this->version    = '1.0.3';
+			$this->version    = '1.0.4';
 
 			// paths
 			$this->file         = __FILE__;
@@ -113,7 +113,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		function textdomain() {
+		public function textdomain() {
 			load_plugin_textdomain( 'edd-csr', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		}
 
@@ -147,7 +147,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 *
 		 * @since 1.0
 		*/
-		function add_redirect_options() {
+		public function add_redirect_options() {
 			add_submenu_page( 'edit.php?post_type=download', __( 'Conditional Success Redirects', 'edd-csr' ), __( 'Conditional Success Redirects', 'edd-csr' ), 'manage_shop_settings', 'edd-redirects', array( $this, 'redirects_page') );
 		}
 
@@ -157,7 +157,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 *
 		 * @since 1.0
 		*/
-		function redirects_page() {
+		public function redirects_page() {
 
 			if ( isset( $_GET['edd-action'] ) && $_GET['edd-action'] == 'edit_redirect' ) {
 				require_once $this->includes_dir . 'edit-redirect.php';
@@ -193,75 +193,54 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 *
 		 * @since 1.0.1
 		*/
-		function template_redirect() {
-			global $edd_options;
+		public function template_redirect() {
 
 			// check if we have query string and on purchase confirmation page
-			if ( ! is_page( $edd_options['success_page'] ) )
+			if ( ! is_page( edd_get_option( 'success_page' ) ) ) {
 				return;
+			}
 
-			// check query string for PayPal and setup redirect.
+			// normal offiste redirect
 			if ( isset( $_GET['payment-confirmation'] ) && $_GET['payment-confirmation'] ) {
-				
-				$purchase_session = edd_get_purchase_session();
-				$cart_items = $purchase_session['downloads'];
 
-				// get the download ID from cart items array
-			 	if ( $cart_items ) {
-					foreach ( $cart_items as $download ) {
-						 $download_id = $download['id'];
-					}
-				}
-				// return if no purchase session
-				else {
+				// return if using PayPal express. Customer needs to "confirm" the payment first before redirecting
+				if ( 'paypalexpress' == $_GET['payment-confirmation'] ) {
 					return;
 				}
 
-				// return if more than one item exists in cart. The default purchase confirmation will be used
-				if( count( $cart_items ) > 1 )
-			 	 	return;
+				$this->do_redirect();
+			}
 
-			 	// check if the redirect is active
-				if ( edd_csr_is_redirect_active( edd_csr_get_redirect_id( $download_id ) ) ) {
-
-				 	// get redirect post ID from the download ID
-					$redirect_id = edd_csr_get_redirect_id( $download_id );
-
-					// get the page ID from the redirect ID
-					$redirect = edd_csr_get_redirect_page_id( $redirect_id );
-
-					// get the permalink from the redirect ID
-					$redirect = get_permalink( $redirect );
-
-					// redirect
-					wp_redirect( $redirect, 301 ); exit;
-			 		
-			 	}
-
+			// PayPal Express
+			// Customer must "confirm" purchase
+			if ( isset( $_GET['token'] ) && $_GET['token'] && ! isset( $_GET['payment-confirmation'] ) ) {
+				$this->do_redirect();
 			}
 
 		}
 
 		/**
-		 * Redirects customer to set page
+		 * The redirect triggered from template_redirect 
 		 *
-		 * @since 1.0
-		 * @param int $payment_id ID of payment
+		 * @since 1.0.4
 		*/
-		function redirect( $payment_id ) {
-			
-			// get cart items from payment ID
-			$cart_items = edd_get_payment_meta_cart_details( $payment_id );
+		public function do_redirect() {
+			$purchase_session = edd_get_purchase_session();
+			$cart_items = $purchase_session['downloads'];
 
-		 	// get the download ID from cart items array
+			// get the download ID from cart items array
 		 	if ( $cart_items ) {
 				foreach ( $cart_items as $download ) {
 					 $download_id = $download['id'];
 				}
 			}
+			// return if no purchase session
+			else {
+				return;
+			}
 
-		 	// return if more than one item exists in cart. The default purchase confirmation will be used
-			if( count( $cart_items ) > 1 )
+			// return if more than one item exists in cart. The default purchase confirmation will be used
+			if ( count( $cart_items ) > 1 )
 		 	 	return;
 
 		 	// check if the redirect is active
@@ -274,9 +253,50 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 				$redirect = edd_csr_get_redirect_page_id( $redirect_id );
 
 				// get the permalink from the redirect ID
-				$redirect = get_permalink( $redirect );
+				$redirect = apply_filters( 'edd_csr_redirect', get_permalink( $redirect ), $download_id );
 
-				$obj = new EDD_Conditional_Success_Redirects_Success_URI();
+				// redirect
+				wp_redirect( $redirect, 301 ); 
+				exit;
+		 		
+		 	}
+		}
+
+		/**
+		 * Redirects customer to set page
+		 *
+		 * @since 1.0
+		 * @param int $payment_id ID of payment
+		*/
+		public function redirect( $payment_id ) {
+			
+			// get cart items from payment ID
+			$cart_items = edd_get_payment_meta_cart_details( $payment_id );
+
+		 	// get the download ID from cart items array
+		 	if ( $cart_items ) {
+				foreach ( $cart_items as $download ) {
+					 $download_id = $download['id'];
+				}
+			}
+
+		 	// return if more than one item exists in cart. The default purchase confirmation will be used
+			if ( count( $cart_items ) > 1 )
+		 	 	return;
+
+		 	// check if the redirect is active
+			if ( edd_csr_is_redirect_active( edd_csr_get_redirect_id( $download_id ) ) ) {
+
+			 	// get redirect post ID from the download ID
+				$redirect_id = edd_csr_get_redirect_id( $download_id );
+
+				// get the page ID from the redirect ID
+				$redirect = edd_csr_get_redirect_page_id( $redirect_id );
+
+				// get the permalink from the redirect ID
+				$redirect = apply_filters( 'edd_csr_redirect', get_permalink( $redirect ), $download_id );
+
+				$obj      = new EDD_Conditional_Success_Redirects_Success_URI();
 				$obj->uri = $redirect;
 
 				add_filter( 'edd_get_success_page_uri', array( $obj, 'uri' ) );
@@ -288,7 +308,6 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 	}
 	
 }
-
 
 if ( ! class_exists( 'EDD_Conditional_Success_Redirects_Success_URI' ) ) {
 	class EDD_Conditional_Success_Redirects_Success_URI {

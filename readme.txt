@@ -8,6 +8,13 @@ Allows per-product confirmation pages on successful purchases.
 
 == Changelog ==
 
+= 1.0.4 =
+* New: edd_csr_redirect filter
+* New: Support for PayPal Express which requires customers to confirm their payment after arriving back from PayPal
+
+= 1.0.3 =
+* Fix: Incorrect parameters passed to EDD_License
+
 = 1.0.2 =
 
 * Fix: Removed out-dated EDD_License_Handler class
