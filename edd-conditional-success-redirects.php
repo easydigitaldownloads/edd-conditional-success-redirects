@@ -3,7 +3,7 @@
 Plugin Name: Easy Digital Downloads - Conditional Success Redirects
 Plugin URI: http://sumobi.com/shop/edd-conditional-success-redirects/
 Description: Allows per-product confirmation pages on successful purchases
-Version: 1.0.2
+Version: 1.0.3
 Author: Andrew Munro, Sumobi
 Author URI: http://sumobi.com/
 */
@@ -58,7 +58,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 */
 		private function setup_globals() {
 
-			$this->version    = '1.0.2';
+			$this->version    = '1.0.3';
 
 			// paths
 			$this->file         = __FILE__;
@@ -104,7 +104,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		private function licensing() {
 			// check if EDD_License class exists
 			if ( class_exists( 'EDD_License' ) ) {
-				$license = new EDD_License( $this->file, 'EDD Conditional Success Redirects', $this->version, 'Andrew Munro' );
+				$license = new EDD_License( __FILE__, 'Conditional Success Redirects', $this->version, 'Andrew Munro' );
 			}
 		}
 
