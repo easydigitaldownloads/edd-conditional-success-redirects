@@ -243,6 +243,9 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 			if ( count( $cart_items ) > 1 )
 		 	 	return;
 
+		 	// redirect by default to the normal EDD success page
+		 	$redirect = apply_filters( 'edd_csr_redirect', get_permalink( edd_get_option( 'success_page' ) ), $download_id );
+
 		 	// check if the redirect is active
 			if ( edd_csr_is_redirect_active( edd_csr_get_redirect_id( $download_id ) ) ) {
 
@@ -253,13 +256,13 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 				$redirect = edd_csr_get_redirect_page_id( $redirect_id );
 
 				// get the permalink from the redirect ID
-				$redirect = apply_filters( 'edd_csr_redirect', get_permalink( $redirect ), $download_id );
+				$redirect = get_permalink( $redirect );
 
-				// redirect
-				wp_redirect( $redirect, 301 ); 
-				exit;
-		 		
 		 	}
+
+		 	// redirect
+		 	wp_redirect( $redirect, 301 ); 
+		 	exit;
 		}
 
 		/**
@@ -284,6 +287,9 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 			if ( count( $cart_items ) > 1 )
 		 	 	return;
 
+		 	// redirect by default to the normal EDD success page
+		 	$redirect = apply_filters( 'edd_csr_redirect', get_permalink( edd_get_option( 'success_page' ) ), $download_id );
+
 		 	// check if the redirect is active
 			if ( edd_csr_is_redirect_active( edd_csr_get_redirect_id( $download_id ) ) ) {
 
@@ -293,21 +299,22 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 				// get the page ID from the redirect ID
 				$redirect = edd_csr_get_redirect_page_id( $redirect_id );
 
-				// get the permalink from the redirect ID
-				$redirect = apply_filters( 'edd_csr_redirect', get_permalink( $redirect ), $download_id );
+				$redirect = get_permalink( $redirect );
 
-				$obj      = new EDD_Conditional_Success_Redirects_Success_URI();
-				$obj->uri = $redirect;
+		 	} 
 
-				add_filter( 'edd_get_success_page_uri', array( $obj, 'uri' ) );
-		 		
-		 	}
+		 	// redirect
+		 	$obj      = new EDD_Conditional_Success_Redirects_Success_URI();
+		 	$obj->uri = $redirect;
+
+		 	add_filter( 'edd_get_success_page_uri', array( $obj, 'uri' ) );
 
 		}
 
 	}
 	
 }
+
 
 if ( ! class_exists( 'EDD_Conditional_Success_Redirects_Success_URI' ) ) {
 	class EDD_Conditional_Success_Redirects_Success_URI {
