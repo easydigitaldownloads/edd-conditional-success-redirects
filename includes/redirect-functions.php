@@ -6,7 +6,7 @@
  */
 
 // Exit if accessed directly
-if ( !defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 /**
@@ -112,11 +112,6 @@ function edd_csr_get_redirect_download( $redirect_download = null ) {
 	return apply_filters( 'edd_csr_get_redirect_download', $download, $redirect_download );
 }
 
-/**
- * Gets all meta key values of a particular meta key
- *
- * @since 1.0
-*/
 
 /**
  * Gets all meta key values of a particular meta key
@@ -255,8 +250,9 @@ function edd_csr_update_redirect_status( $redirect_id = 0, $new_status = 'active
  */
 function edd_csr_redirect_exists( $redirect_id ) {
 
-	if ( edd_csr_get_redirect( $redirect_id ) )
+	if ( edd_csr_get_redirect( $redirect_id ) ) {
 		return true;
+	}
 
 	return false;
 }
@@ -274,8 +270,9 @@ function edd_csr_get_redirect( $redirect_id ) {
 
 	$redirect = get_post( $redirect_id );
 
-	if ( get_post_type( $redirect_id ) != 'edd_redirect' )
+	if ( get_post_type( $redirect_id ) != 'edd_redirect' ) {
 		return false;
+	}
 
 	return $redirect;
 }

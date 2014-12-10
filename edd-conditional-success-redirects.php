@@ -3,7 +3,7 @@
 Plugin Name: Easy Digital Downloads - Conditional Success Redirects
 Plugin URI: http://sumobi.com/shop/edd-conditional-success-redirects/
 Description: Allows per-product confirmation pages on successful purchases
-Version: 1.0.4
+Version: 1.1
 Author: Andrew Munro, Sumobi
 Author URI: http://sumobi.com/
 */
@@ -27,26 +27,16 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 *
 		 */
 		public static function instance() {
-			if ( ! isset ( self::$instance ) ) {
-				self::$instance = new self;
+			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof EDD_Conditional_Success_Redirects ) ) {
+				self::$instance = new EDD_Conditional_Success_Redirects;
+				self::$instance->setup_globals();
+				self::$instance->includes();
+				self::$instance->setup_actions();
+				self::$instance->licensing();
+				self::$instance->load_textdomain();
 			}
 
 			return self::$instance;
-		}
-
-
-		/**
-		 * Start your engines
-		 *
-		 * @since 1.0
-		 *
-		 * @return void
-		 */
-		public function __construct() {
-			$this->setup_globals();
-			$this->includes();
-			$this->setup_actions();
-			$this->licensing();
 		}
 
 		/**
@@ -58,7 +48,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 */
 		private function setup_globals() {
 
-			$this->version    = '1.0.4';
+			$this->version    = '1.1';
 
 			// paths
 			$this->file         = __FILE__;
@@ -80,18 +70,8 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 * @return void
 		 */
 		private function setup_actions() {
-
-			// Internationalization
-			add_action( 'init', array( $this, 'textdomain' ) );
-
 			// Add sub-menu page
 			add_action( 'admin_menu', array( $this, 'add_redirect_options'), 10 );
-
-			// redirect
-			add_action( 'edd_complete_purchase', array( $this, 'redirect' ) );
-
-			// redirect customers if they arrive from off-site payment gateways like PayPal
-			add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 
 			do_action( 'edd_csr_setup_actions' );
 		}
@@ -109,14 +89,37 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		}
 
 		/**
-		 * Internationalization
+		 * Loads the plugin language files
 		 *
-		 * @since 1.0
+		 * @access public
+		 * @since 1.1
+		 * @return void
 		 */
-		public function textdomain() {
-			load_plugin_textdomain( 'edd-csr', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-		}
+		public function load_textdomain() {
 
+			// Set filter for plugin's languages directory
+			$lang_dir = dirname( plugin_basename( __FILE__ ) ) . '/languages/';
+			$lang_dir = apply_filters( 'edd_csr_languages_directory', $lang_dir );
+
+			// Traditional WordPress plugin locale filter
+			$locale        = apply_filters( 'plugin_locale',  get_locale(), 'edd-csr' );
+			$mofile        = sprintf( '%1$s-%2$s.mo', 'edd-csr', $locale );
+
+			// Setup paths to current locale file
+			$mofile_local  = $lang_dir . $mofile;
+			$mofile_global = WP_LANG_DIR . '/edd-conditional-success-redirects/' . $mofile;
+
+			if ( file_exists( $mofile_global ) ) {
+				// Look in global /wp-content/languages/edd-conditional-success-redirects/ folder
+				load_textdomain( 'edd-csr', $mofile_global );
+			} elseif ( file_exists( $mofile_local ) ) {
+				// Look in local /wp-content/plugins/edd-conditional-success-redirects/languages/ folder
+				load_textdomain( 'edd-csr', $mofile_local );
+			} else {
+				// Load the default language files
+				load_plugin_textdomain( 'edd-csr', false, $lang_dir );
+			}
+		}
 
 		/**
 		 * Include required files.
@@ -126,13 +129,15 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 * @return void
 		 */
 		private function includes() {
-			
+
+			require( $this->includes_dir . 'class-process-redirects.php' );
 			require( $this->includes_dir . 'redirect-functions.php' );
 
 			do_action( 'edd_csr_include_files' );
 
-			if ( ! is_admin() )
+			if ( ! is_admin() ) {
 				return;
+			}
 
 			require( $this->includes_dir . 'redirect-actions.php' );
 			require( $this->includes_dir . 'admin-notices.php' );
@@ -188,133 +193,38 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 			}
 		}
 
-		/**
-		 * Redirect customers to custom page if they have arrived from PayPal or other similar payment gateways that return the customer after successful purchase.
-		 *
-		 * @since 1.0.1
-		*/
-		public function template_redirect() {
-
-			// check if we have query string and on purchase confirmation page
-			if ( ! is_page( edd_get_option( 'success_page' ) ) ) {
-				return;
-			}
-
-			// normal offiste redirect
-			if ( isset( $_GET['payment-confirmation'] ) && $_GET['payment-confirmation'] ) {
-
-				// return if using PayPal express. Customer needs to "confirm" the payment first before redirecting
-				if ( 'paypalexpress' == $_GET['payment-confirmation'] ) {
-					return;
-				}
-
-				$this->do_redirect();
-			}
-
-			// PayPal Express
-			// Customer must "confirm" purchase
-			if ( isset( $_GET['token'] ) && $_GET['token'] && ! isset( $_GET['payment-confirmation'] ) ) {
-				$this->do_redirect();
-			}
-
-		}
-
-		/**
-		 * The redirect triggered from template_redirect 
-		 *
-		 * @since 1.0.4
-		*/
-		public function do_redirect() {
-			$purchase_session = edd_get_purchase_session();
-			$cart_items = $purchase_session['downloads'];
-
-			// get the download ID from cart items array
-		 	if ( $cart_items ) {
-				foreach ( $cart_items as $download ) {
-					 $download_id = $download['id'];
-				}
-			}
-			// return if no purchase session
-			else {
-				return;
-			}
-
-			// return if more than one item exists in cart. The default purchase confirmation will be used
-			if ( count( $cart_items ) > 1 )
-		 	 	return;
-
-		 	// redirect by default to the normal EDD success page
-		 	$redirect = apply_filters( 'edd_csr_redirect', get_permalink( edd_get_option( 'success_page' ) ), $download_id );
-
-		 	// check if the redirect is active
-			if ( edd_csr_is_redirect_active( edd_csr_get_redirect_id( $download_id ) ) ) {
-
-			 	// get redirect post ID from the download ID
-				$redirect_id = edd_csr_get_redirect_id( $download_id );
-
-				// get the page ID from the redirect ID
-				$redirect = edd_csr_get_redirect_page_id( $redirect_id );
-
-				// get the permalink from the redirect ID
-				$redirect = get_permalink( $redirect );
-
-		 	}
-
-		 	// redirect
-		 	wp_redirect( $redirect, 301 ); 
-		 	exit;
-		}
-
-		/**
-		 * Redirects customer to set page
-		 *
-		 * @since 1.0
-		 * @param int $payment_id ID of payment
-		*/
-		public function redirect( $payment_id ) {
-			
-			// get cart items from payment ID
-			$cart_items = edd_get_payment_meta_cart_details( $payment_id );
-
-		 	// get the download ID from cart items array
-		 	if ( $cart_items ) {
-				foreach ( $cart_items as $download ) {
-					 $download_id = $download['id'];
-				}
-			}
-
-		 	// return if more than one item exists in cart. The default purchase confirmation will be used
-			if ( count( $cart_items ) > 1 )
-		 	 	return;
-
-		 	// redirect by default to the normal EDD success page
-		 	$redirect = apply_filters( 'edd_csr_redirect', get_permalink( edd_get_option( 'success_page' ) ), $download_id );
-
-		 	// check if the redirect is active
-			if ( edd_csr_is_redirect_active( edd_csr_get_redirect_id( $download_id ) ) ) {
-
-			 	// get redirect post ID from the download ID
-				$redirect_id = edd_csr_get_redirect_id( $download_id );
-
-				// get the page ID from the redirect ID
-				$redirect = edd_csr_get_redirect_page_id( $redirect_id );
-
-				$redirect = get_permalink( $redirect );
-
-		 	} 
-
-		 	// redirect
-		 	$obj      = new EDD_Conditional_Success_Redirects_Success_URI();
-		 	$obj->uri = $redirect;
-
-		 	add_filter( 'edd_get_success_page_uri', array( $obj, 'uri' ) );
-
-		}
-
 	}
-	
-}
 
+
+	/**
+	 * The main function responsible for returning the one true EDD_Conditional_Success_Redirects
+	 * instance to functions everywhere
+	 *
+	 * @since       1.0.0
+	 * @return      \EDD_Conditional_Success_Redirects The one true EDD_Conditional_Success_Redirects
+	 *
+	 * @todo        Inclusion of the activation code below isn't mandatory, but
+	 *              can prevent any number of errors, including fatal errors, in
+	 *              situations where your extension is activated but EDD is not
+	 *              present.
+	 */
+	function edd_csr_redirects() {
+	    if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
+	        if ( ! class_exists( 'EDD_Extension_Activation' ) ) {
+	            require_once 'includes/class.extension-activation.php';
+	        }
+
+	        $activation = new EDD_Extension_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
+	        $activation = $activation->run();
+	        return EDD_Conditional_Success_Redirects::instance();
+	    } else {
+	        return EDD_Conditional_Success_Redirects::instance();
+	    }
+	}
+
+	add_action( 'plugins_loaded', 'edd_csr_redirects' );
+
+}
 
 if ( ! class_exists( 'EDD_Conditional_Success_Redirects_Success_URI' ) ) {
 	class EDD_Conditional_Success_Redirects_Success_URI {
@@ -325,9 +235,3 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects_Success_URI' ) ) {
 	    }
 	}
 }
-
-function edd_csr_redirects() {
-	return EDD_Conditional_Success_Redirects::instance();
-}
-
-edd_csr_redirects();

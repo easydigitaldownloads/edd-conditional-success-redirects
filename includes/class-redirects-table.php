@@ -156,7 +156,7 @@ class EDD_CSR_Table extends WP_List_Table {
 	 */
 	public function get_sortable_columns() {
 		return array(
-			'ID'     => array( 'ID', true ),
+			'ID'         => array( 'ID', true ),
 			'download'   => array( 'download', false ),
 		);
 	}
@@ -266,7 +266,7 @@ class EDD_CSR_Table extends WP_List_Table {
 
 		foreach ( $ids as $id ) {
 			if ( 'delete' === $this->current_action() ) {
-				edd_remove_redirect( $id );
+				edd_csr_remove_redirect( $id );
 			}
 		}
 
@@ -322,7 +322,7 @@ class EDD_CSR_Table extends WP_List_Table {
 			foreach ( $redirects as $redirect ) {
 
 				$redirect_to = edd_csr_get_redirect_page( $redirect->ID ) ? edd_csr_get_redirect_page( $redirect->ID ) : '';
-				$download = edd_csr_get_redirect_download( $redirect->ID ) ? get_the_title( edd_csr_get_redirect_download( $redirect->ID ) ) : '';
+				$download = edd_csr_get_redirect_download( $redirect->ID ) ? '<a href="' . admin_url( 'edit.php?post_type=download&page=edd-redirects&edd-action=edit_redirect&redirect=' . $redirect->ID ) . '" class="row-title">' . get_the_title( edd_csr_get_redirect_download( $redirect->ID ) ) . '</a>' : '';
 				
 				$redirect_data[] = array(
 					'ID' 			=> $redirect->ID,
