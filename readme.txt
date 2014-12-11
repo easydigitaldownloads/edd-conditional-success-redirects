@@ -9,12 +9,12 @@ Allows per-product confirmation pages on successful purchases.
 == Changelog ==
 
 = 1.1 =
-* New: edd_csr_redirect filter
-* New: Support for the PayPal Express extension which requires customers to confirm their payment after arriving back from PayPal
-* New: Activation script to check for the existance of EDD
-* New: You can now click directly on the download names to edit the redirect 
-* New: Better internationalization function
-* Fix: Bulk deleting redirects now works
+* New: edd_csr_redirect filter for creating custom redirects
+* New: Support for the PayPal Express (PayPal Pro/Express extension) which requires customers to confirm their payment after arriving back from PayPal
+* New: Activation script to check for the existance of Easy Digital Downloads
+* New: Redirects can now be edited by clicking on the download titles
+* New: Better internationalization function to allow easier translations
+* Fix: Bulk delete redirects
 
 = 1.0.3 =
 * Fix: Incorrect parameters passed to EDD_License

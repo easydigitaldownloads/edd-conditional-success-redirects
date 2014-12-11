@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Easy Digital Downloads - Conditional Success Redirects\n"
-"POT-Creation-Date: 2014-07-08 11:41+1200\n"
-"PO-Revision-Date: 2014-07-08 11:41+1200\n"
+"POT-Creation-Date: 2014-12-11 14:28+1200\n"
+"PO-Revision-Date: 2014-12-11 14:28+1200\n"
 "Last-Translator: Andrew Munro, Sumobi <andrew@sumobi.com>\n"
 "Language-Team: Sumobi <andrew@sumobi.com>\n"
 "Language: en_US\n"
@@ -15,16 +15,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../edd-conditional-success-redirects.php:151
-#: ../edd-conditional-success-redirects.php:174
+#: ../edd-conditional-success-redirects.php:156
+#: ../edd-conditional-success-redirects.php:179
 msgid "Conditional Success Redirects"
 msgstr ""
 
-#: ../edd-conditional-success-redirects.php:174 ../includes/post-types.php:23
+#: ../edd-conditional-success-redirects.php:179 ../includes/post-types.php:23
 msgid "Add New"
 msgstr ""
 
-#: ../edd-conditional-success-redirects.php:177
+#: ../edd-conditional-success-redirects.php:182
 msgid "Search"
 msgstr ""
 
@@ -101,6 +101,13 @@ msgstr ""
 msgid "Redirect Deleted"
 msgstr ""
 
+#: ../includes/class-process-redirects.php:83
+#, php-format
+msgid ""
+"Your purchase is processing. This page will reload automatically in 8 "
+"seconds. If it does not, click <a href=\"%s\">here</a>."
+msgstr ""
+
 #: ../includes/class-redirects-table.php:124
 msgid "All"
 msgstr ""
@@ -145,6 +152,20 @@ msgstr ""
 
 #: ../includes/class-redirects-table.php:249
 msgid "No redirects found."
+msgstr ""
+
+#: ../includes/class.extension-activation.php:47
+msgid "This plugin"
+msgstr ""
+
+#: ../includes/class.extension-activation.php:83
+#, php-format
+msgid " requires %sEasy Digital Downloads%s. Please activate it to continue."
+msgstr ""
+
+#: ../includes/class.extension-activation.php:86
+#, php-format
+msgid " requires %sEasy Digital Downloads%s. Please install it to continue."
 msgstr ""
 
 #: ../includes/edit-redirect.php:12

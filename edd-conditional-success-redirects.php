@@ -200,7 +200,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 	 * The main function responsible for returning the one true EDD_Conditional_Success_Redirects
 	 * instance to functions everywhere
 	 *
-	 * @since       1.0.0
+	 * @since       1.1
 	 * @return      \EDD_Conditional_Success_Redirects The one true EDD_Conditional_Success_Redirects
 	 *
 	 * @todo        Inclusion of the activation code below isn't mandatory, but
