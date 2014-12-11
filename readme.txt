@@ -11,7 +11,7 @@ Allows per-product confirmation pages on successful purchases.
 = 1.1 =
 * New: edd_csr_redirect filter for creating custom redirects
 * New: Support for the PayPal Express (PayPal Pro/Express extension) which requires customers to confirm their payment after arriving back from PayPal
-* New: Activation script to check for the existance of Easy Digital Downloads
+* New: Activation script to check for the existence of Easy Digital Downloads
 * New: Redirects can now be edited by clicking on the download titles
 * New: Better internationalization function to allow easier translations
 * Fix: Bulk delete redirects
