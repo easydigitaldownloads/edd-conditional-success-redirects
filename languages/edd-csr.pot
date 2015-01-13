@@ -1,0 +1,241 @@
+# Copyright (C) 2015 Easy Digital Downloads - Conditional Success Redirects
+# This file is distributed under the same license as the Easy Digital Downloads - Conditional Success Redirects package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Digital Downloads - Conditional Success Redirects "
+"1.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/edd-csr\n"
+"POT-Creation-Date: 2015-01-08 21:45:17+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: edd-conditional-success-redirects.php:158
+#: edd-conditional-success-redirects.php:181
+msgid "Conditional Success Redirects"
+msgstr ""
+
+#: edd-conditional-success-redirects.php:181 includes/post-types.php:23
+msgid "Add New"
+msgstr ""
+
+#: edd-conditional-success-redirects.php:184
+msgid "Search"
+msgstr ""
+
+#: includes/add-redirect.php:12 includes/post-types.php:24
+msgid "Add New Redirect"
+msgstr ""
+
+#: includes/add-redirect.php:12 includes/edit-redirect.php:19
+msgid "Go Back"
+msgstr ""
+
+#: includes/add-redirect.php:20 includes/add-redirect.php:33
+#: includes/edit-redirect.php:26 includes/edit-redirect.php:51
+msgid "Select %s"
+msgstr ""
+
+#: includes/add-redirect.php:43 includes/edit-redirect.php:61
+msgid "No %s found"
+msgstr ""
+
+#: includes/add-redirect.php:49 includes/edit-redirect.php:67
+msgid ""
+"Select the %s that will trigger the redirect when it is succesfully "
+"purchased on it's own"
+msgstr ""
+
+#: includes/add-redirect.php:55 includes/edit-redirect.php:72
+msgid "Redirect Page"
+msgstr ""
+
+#: includes/add-redirect.php:64 includes/edit-redirect.php:81
+msgid "Select page"
+msgstr ""
+
+#: includes/add-redirect.php:75 includes/edit-redirect.php:92
+msgid ""
+"Select the page to redirect to when the %s above has been succesfully "
+"purchased"
+msgstr ""
+
+#: includes/add-redirect.php:88
+msgid "Add Redirect"
+msgstr ""
+
+#: includes/admin-notices.php:20
+msgid "Redirect added."
+msgstr ""
+
+#: includes/admin-notices.php:24
+msgid "There was a problem adding your redirect, please try again."
+msgstr ""
+
+#: includes/admin-notices.php:28
+msgid "Redirect updated."
+msgstr ""
+
+#: includes/admin-notices.php:32
+msgid "There was a problem updating your redirect, please try again."
+msgstr ""
+
+#: includes/admin-notices.php:36
+msgid "Redirect Deactivated"
+msgstr ""
+
+#: includes/admin-notices.php:40
+msgid "Redirect Activated"
+msgstr ""
+
+#: includes/admin-notices.php:44
+msgid "Redirect Deleted"
+msgstr ""
+
+#: includes/class-process-redirects.php:83
+msgid ""
+"Your purchase is processing. This page will reload automatically in 8 "
+"seconds. If it does not, click <a href=\"%s\">here</a>."
+msgstr ""
+
+#: includes/class-redirects-table.php:124
+msgid "All"
+msgstr ""
+
+#: includes/class-redirects-table.php:125 includes/edit-redirect.php:101
+msgid "Active"
+msgstr ""
+
+#: includes/class-redirects-table.php:126 includes/edit-redirect.php:102
+msgid "Inactive"
+msgstr ""
+
+#: includes/class-redirects-table.php:142
+msgid "%s"
+msgstr ""
+
+#: includes/class-redirects-table.php:143
+msgid "Redirect"
+msgstr ""
+
+#: includes/class-redirects-table.php:144 includes/edit-redirect.php:97
+msgid "Status"
+msgstr ""
+
+#: includes/class-redirects-table.php:197
+msgid "Edit"
+msgstr ""
+
+#: includes/class-redirects-table.php:200
+msgid "Deactivate"
+msgstr ""
+
+#: includes/class-redirects-table.php:202
+msgid "Activate"
+msgstr ""
+
+#: includes/class-redirects-table.php:204
+#: includes/class-redirects-table.php:236
+msgid "Delete"
+msgstr ""
+
+#: includes/class-redirects-table.php:249
+msgid "No redirects found."
+msgstr ""
+
+#: includes/class.extension-activation.php:47
+msgid "This plugin"
+msgstr ""
+
+#: includes/class.extension-activation.php:83
+msgid " requires %sEasy Digital Downloads%s. Please activate it to continue."
+msgstr ""
+
+#: includes/class.extension-activation.php:86
+msgid " requires %sEasy Digital Downloads%s. Please install it to continue."
+msgstr ""
+
+#: includes/edit-redirect.php:12
+msgid "Something went wrong."
+msgstr ""
+
+#: includes/edit-redirect.php:12 includes/redirect-actions.php:90
+msgid "Error"
+msgstr ""
+
+#: includes/edit-redirect.php:19 includes/post-types.php:25
+msgid "Edit Redirect"
+msgstr ""
+
+#: includes/edit-redirect.php:104
+msgid "The status of this redirect."
+msgstr ""
+
+#: includes/edit-redirect.php:118
+msgid "Update Redirect"
+msgstr ""
+
+#: includes/post-types.php:21
+msgctxt "post type general name"
+msgid "Redirects"
+msgstr ""
+
+#: includes/post-types.php:22
+msgctxt "post type singular name"
+msgid "Redirect"
+msgstr ""
+
+#: includes/post-types.php:26
+msgid "New Redirect"
+msgstr ""
+
+#: includes/post-types.php:27
+msgid "All Redirects"
+msgstr ""
+
+#: includes/post-types.php:28
+msgid "View Redirect"
+msgstr ""
+
+#: includes/post-types.php:29
+msgid "Search Redirects"
+msgstr ""
+
+#: includes/post-types.php:30
+msgid "No Redirects found"
+msgstr ""
+
+#: includes/post-types.php:31
+msgid "No Redirects found in Trash"
+msgstr ""
+
+#: includes/post-types.php:33
+msgid "Redirects"
+msgstr ""
+
+#: includes/redirect-actions.php:90
+msgid "Trying to cheat or something?"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Easy Digital Downloads - Conditional Success Redirects"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://sumobi.com/shop/edd-conditional-success-redirects/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Allows per-product confirmation pages on successful purchases"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Andrew Munro, Sumobi"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://sumobi.com/"
+msgstr ""
