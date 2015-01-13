@@ -6,6 +6,8 @@ Description: Allows per-product confirmation pages on successful purchases
 Version: 1.1
 Author: Andrew Munro, Sumobi
 Author URI: http://sumobi.com/
+ Text Domain: edd-csr
+ Domain Path: languages
 */
 
 // Exit if accessed directly
@@ -166,10 +168,10 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 
 			if ( isset( $_GET['edd-action'] ) && $_GET['edd-action'] == 'edit_redirect' ) {
 				require_once $this->includes_dir . 'edit-redirect.php';
-			} 
+			}
 			elseif ( isset( $_GET['edd-action'] ) && $_GET['edd-action'] == 'add_redirect' ) {
 				require_once $this->includes_dir . 'add-redirect.php';
-			} 
+			}
 			else {
 				require_once $this->includes_dir . 'class-redirects-table.php';
 				$redirects_table = new EDD_CSR_Table();
