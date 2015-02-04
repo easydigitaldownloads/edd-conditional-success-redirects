@@ -8,10 +8,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-01-09 15:26+0100\n"
+"PO-Revision-Date: 2015-02-04 21:40+0100\n"
 "Last-Translator: fxbenard | FxB <fx@fxbenard.com>\n"
 "Language-Team: fxbenard <fx@fxbenard.com>\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.3\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Language: fr_FR\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -67,11 +67,11 @@ msgstr "Ajouter"
 
 #: includes/admin-notices.php:20
 msgid "Redirect added."
-msgstr "Redirection ajoutée."
+msgstr "Redirection ajoutée"
 
 #: includes/admin-notices.php:24
 msgid "There was a problem adding your redirect, please try again."
-msgstr "Une erreur s'est produite pendant l'ajout de votre redirection, veuillez recommencer."
+msgstr "Une erreur s'est produite pendant l'ajout de votre redirection, veuillez réessayer."
 
 #: includes/admin-notices.php:28
 msgid "Redirect updated."
@@ -107,11 +107,11 @@ msgstr "Toutes"
 
 #: includes/class-redirects-table.php:125 includes/edit-redirect.php:101
 msgid "Active"
-msgstr "Actif"
+msgstr "Active"
 
 #: includes/class-redirects-table.php:126 includes/edit-redirect.php:102
 msgid "Inactive"
-msgstr "Inactif"
+msgstr "Inactive"
 
 #: includes/class-redirects-table.php:142
 msgid "%s"
@@ -213,7 +213,7 @@ msgstr "Aucune redirection trouvée dans la Corbeille"
 
 #: includes/post-types.php:33
 msgid "Redirects"
-msgstr "Redirections."
+msgstr "Redirections"
 
 #: includes/redirect-actions.php:90
 msgid "Trying to cheat or something?"

@@ -6,8 +6,8 @@ Description: Allows per-product confirmation pages on successful purchases
 Version: 1.1
 Author: Andrew Munro, Sumobi
 Author URI: http://sumobi.com/
- Text Domain: edd-csr
- Domain Path: languages
+Text Domain: edd-csr
+Domain Path: languages
 */
 
 // Exit if accessed directly
