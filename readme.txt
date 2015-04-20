@@ -7,6 +7,8 @@ Author URI: http://sumobi.com/
 Allows per-product confirmation pages on successful purchases.
 
 == Changelog ==
+= 1.1.1 =
+* FIX: XSS vulnerability in query args
 
 = 1.1 =
 * New: edd_csr_redirect filter for creating custom redirects

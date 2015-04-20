@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 /**
- * Sets up and stores a new redirect 
+ * Sets up and stores a new redirect
  *
  * @since 1.0
  * @param array $data Redirect data
@@ -35,10 +35,10 @@ function edd_csr_add_redirect( $data ) {
 		$posted['status'] = 'active';
 
 		if ( edd_csr_store_redirect( $posted ) ) {
-			wp_redirect( add_query_arg( 'edd-message', 'redirect_added', $data['edd-redirect'] ) ); edd_die();
+			wp_safe_redirect( add_query_arg( 'edd-message', 'redirect_added', $data['edd-redirect'] ) ); edd_die();
 		} else {
-			wp_redirect( add_query_arg( 'edd-message', 'redirect_add_failed', $data['edd-redirect'] ) ); edd_die();
-		}		
+			wp_safe_redirect( add_query_arg( 'edd-message', 'redirect_add_failed', $data['edd-redirect'] ) ); edd_die();
+		}
 	}
 }
 add_action( 'edd_add_redirect', 'edd_csr_add_redirect' );
@@ -66,9 +66,9 @@ function edd_csr_edit_redirect( $data ) {
 		}
 
 		if ( edd_csr_store_redirect( $redirect, $data['redirect-id'] ) ) {
-			wp_redirect( add_query_arg( 'edd-message', 'redirect_updated', $data['edd-redirect'] ) ); edd_die();
+			wp_safe_redirect( add_query_arg( 'edd-message', 'redirect_updated', $data['edd-redirect'] ) ); edd_die();
 		} else {
-			wp_redirect( add_query_arg( 'edd-message', 'redirect_update_failed', $data['edd-redirect'] ) ); edd_die();
+			wp_safe_redirect( add_query_arg( 'edd-message', 'redirect_update_failed', $data['edd-redirect'] ) ); edd_die();
 		}
 	}
 }
@@ -77,7 +77,7 @@ add_action( 'edd_edit_redirect', 'edd_csr_edit_redirect' );
 
 /**
  * Listens for when a redirect delete button is clicked and deletes the
- * redirect 
+ * redirect
  *
  * @since 1.0
  * @param array $data Redirect data

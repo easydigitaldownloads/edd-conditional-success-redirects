@@ -121,9 +121,9 @@ class EDD_CSR_Table extends WP_List_Table {
 		$inactive_count = '&nbsp;<span class="count">(' . $this->inactive_count  . ')</span>';
 
 		$views = array(
-			'all'		=> sprintf( '<a href="%s"%s>%s</a>', remove_query_arg( 'status', $base ), $current === 'all' || $current == '' ? ' class="current"' : '', __('All', 'edd-csr') . $total_count ),
-			'active'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( 'status', 'active', $base ), $current === 'active' ? ' class="current"' : '', __('Active', 'edd-csr') . $active_count ),
-			'inactive'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( 'status', 'inactive', $base ), $current === 'inactive' ? ' class="current"' : '', __('Inactive', 'edd-csr') . $inactive_count ),
+			'all'		=> sprintf( '<a href="%s"%s>%s</a>', esc_url( remove_query_arg( 'status', $base ) ), $current === 'all' || $current == '' ? ' class="current"' : '', __('All', 'edd-csr') . $total_count ),
+			'active'	=> sprintf( '<a href="%s"%s>%s</a>', esc_url( add_query_arg( 'status', 'active', $base ) ), $current === 'active' ? ' class="current"' : '', __('Active', 'edd-csr') . $active_count ),
+			'inactive'	=> sprintf( '<a href="%s"%s>%s</a>', esc_url( add_query_arg( 'status', 'inactive', $base ) ), $current === 'inactive' ? ' class="current"' : '', __('Inactive', 'edd-csr') . $inactive_count ),
 		);
 
 		return $views;
@@ -194,14 +194,14 @@ class EDD_CSR_Table extends WP_List_Table {
 		$base         = admin_url( 'edit.php?post_type=download&page=edd-redirects&edd-action=edit_redirect&redirect=' . $item['ID'] );
 		$row_actions  = array();
 
-		$row_actions['edit'] = '<a href="' . add_query_arg( array( 'edd-action' => 'edit_redirect', 'redirect' => $redirect->ID ) ) . '">' . __( 'Edit', 'edd-csr' ) . '</a>';
+		$row_actions['edit'] = '<a href="' . esc_url( add_query_arg( array( 'edd-action' => 'edit_redirect', 'redirect' => $redirect->ID ) ) ) . '">' . __( 'Edit', 'edd-csr' ) . '</a>';
 
 		if( strtolower( $item['status'] ) == 'active' )
-			$row_actions['deactivate'] = '<a href="' . add_query_arg( array( 'edd-action' => 'deactivate_redirect', 'redirect' => $redirect->ID ) ) . '">' . __( 'Deactivate', 'edd-csr' ) . '</a>';
+			$row_actions['deactivate'] = '<a href="' . esc_url( add_query_arg( array( 'edd-action' => 'deactivate_redirect', 'redirect' => $redirect->ID ) ) ) . '">' . __( 'Deactivate', 'edd-csr' ) . '</a>';
 		else
-			$row_actions['activate'] = '<a href="' . add_query_arg( array( 'edd-action' => 'activate_redirect', 'redirect' => $redirect->ID ) ) . '">' . __( 'Activate', 'edd-csr' ) . '</a>';
+			$row_actions['activate'] = '<a href="' . esc_url( add_query_arg( array( 'edd-action' => 'activate_redirect', 'redirect' => $redirect->ID ) ) ) . '">' . __( 'Activate', 'edd-csr' ) . '</a>';
 
-		$row_actions['delete'] = '<a href="' . wp_nonce_url( add_query_arg( array( 'edd-action' => 'delete_redirect', 'redirect' => $redirect->ID ) ), 'edd_redirect_nonce' ) . '">' . __( 'Delete', 'edd-csr' ) . '</a>';
+		$row_actions['delete'] = '<a href="' . wp_nonce_url( esc_url( add_query_arg( array( 'edd-action' => 'delete_redirect', 'redirect' => $redirect->ID ) ) ), 'edd_redirect_nonce' ) . '">' . __( 'Delete', 'edd-csr' ) . '</a>';
 
 		$row_actions = apply_filters( 'edd_csr_redirect_row_actions', $row_actions, $redirect );
 
@@ -323,7 +323,7 @@ class EDD_CSR_Table extends WP_List_Table {
 
 				$redirect_to = edd_csr_get_redirect_page( $redirect->ID ) ? edd_csr_get_redirect_page( $redirect->ID ) : '';
 				$download = edd_csr_get_redirect_download( $redirect->ID ) ? '<a href="' . admin_url( 'edit.php?post_type=download&page=edd-redirects&edd-action=edit_redirect&redirect=' . $redirect->ID ) . '" class="row-title">' . get_the_title( edd_csr_get_redirect_download( $redirect->ID ) ) . '</a>' : '';
-				
+
 				$redirect_data[] = array(
 					'ID' 			=> $redirect->ID,
 					'download'		=> $download,

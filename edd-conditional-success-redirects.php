@@ -3,7 +3,7 @@
 Plugin Name: Easy Digital Downloads - Conditional Success Redirects
 Plugin URI: http://sumobi.com/shop/edd-conditional-success-redirects/
 Description: Allows per-product confirmation pages on successful purchases
-Version: 1.1
+Version: 1.1.1
 Author: Andrew Munro, Sumobi
 Author URI: http://sumobi.com/
 Text Domain: edd-csr
@@ -50,7 +50,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 */
 		private function setup_globals() {
 
-			$this->version    = '1.1';
+			$this->version    = '1.1.1';
 
 			// paths
 			$this->file         = __FILE__;
@@ -178,7 +178,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 				$redirects_table->prepare_items();
 			?>
 			<div class="wrap">
-				<h2><?php _e( 'Conditional Success Redirects', 'edd-csr' ); ?><a href="<?php echo add_query_arg( array( 'edd-action' => 'add_redirect' ) ); ?>" class="add-new-h2"><?php _e( 'Add New', 'edd-csr' ); ?></a></h2>
+				<h2><?php _e( 'Conditional Success Redirects', 'edd-csr' ); ?><a href="<?php echo esc_url( add_query_arg( array( 'edd-action' => 'add_redirect' ) ) ); ?>" class="add-new-h2"><?php _e( 'Add New', 'edd-csr' ); ?></a></h2>
 				<?php do_action( 'edd_csr_redirects_page_top' ); ?>
 				<form id="edd-redirects-filter" method="get" action="<?php echo admin_url( 'edit.php?post_type=download&page=edd-redirects' ); ?>">
 					<?php $redirects_table->search_box( __( 'Search', 'edd-csr' ), 'edd-redirects' ); ?>
