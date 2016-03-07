@@ -106,7 +106,7 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 			if ( isset( $_GET['payment-confirmation'] ) && $_GET['payment-confirmation'] ) {
 
 				// return if using PayPal express. Customer needs to "confirm" the payment first before redirecting
-				// also redirects if paypal standard was used. It has it's own processing function
+				// also redirects if paypal standard was used. It has its own processing function
 				if ( 'paypalexpress' == $_GET['payment-confirmation'] || 'paypal' == $_GET['payment-confirmation'] ) {
 					return;
 				}
@@ -172,7 +172,7 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 
 		 	add_filter( 'edd_get_success_page_uri', array( $obj, 'uri' ) );
 			add_filter( 'edd_success_page_url', array( $obj, 'uri' ) );
-			
+
 		}
 
 		/**

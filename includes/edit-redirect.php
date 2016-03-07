@@ -26,7 +26,7 @@ $redirect     = edd_csr_get_redirect( $redirect_id );
 					<label for="download"><?php printf( __( 'Select %s', 'edd-csr' ), edd_get_label_singular() ); ?></label>
 				</th>
 				<td>
-					<?php 
+					<?php
 
 					// current download
 					$include = get_post_meta( $redirect_id, '_edd_redirect_download', true );
@@ -46,8 +46,8 @@ $redirect     = edd_csr_get_redirect( $redirect_id );
 
 					<select name="download" id="download">
 
-						<?php if ( $products ) : ?> 
-						
+						<?php if ( $products ) : ?>
+
 						<option><?php printf( __( 'Select %s', 'edd-csr' ), strtolower( edd_get_label_singular() ) ); ?></option>
 
 						<?php foreach ( $products as $product ) {
@@ -62,9 +62,9 @@ $redirect     = edd_csr_get_redirect( $redirect_id );
 
 						<?php endif; ?>
 
-					</select>	
-					
-					<p class="description"><?php printf( __( 'Select the %s that will trigger the redirect when it is succesfully purchased on it\'s own', 'edd-csr' ), strtolower( edd_get_label_singular() ) ); ?></p>
+					</select>
+
+					<p class="description"><?php printf( __( 'Select the %s that will trigger the redirect when it is succesfully purchased on its own', 'edd-csr' ), strtolower( edd_get_label_singular() ) ); ?></p>
 				</td>
 			</tr>
 			<tr class="form-field">
@@ -72,10 +72,10 @@ $redirect     = edd_csr_get_redirect( $redirect_id );
 					<label for="edd-page"><?php _e( 'Redirect Page', 'edd-csr' ); ?></label>
 				</th>
 				<td>
-				
+
 					<?php
 						$pages = get_pages();
-						
+
 						if ( $pages ) { ?>
 						<select id="edd-page" name="page">
 							<option><?php _e( 'Select page', 'edd-csr' ); ?></option>
@@ -83,7 +83,7 @@ $redirect     = edd_csr_get_redirect( $redirect_id );
 							foreach ( $pages as $page ) { ?>
 								<option value="<?php echo $page->ID; ?>" <?php selected( edd_csr_get_redirect_page_id( $redirect_id ), $page->ID ); ?>><?php echo $page->post_title; ?></option>
 							<?php } ?>
-							
+
 						</select>
 							<?php
 						}
@@ -104,7 +104,7 @@ $redirect     = edd_csr_get_redirect( $redirect_id );
 					<p class="description"><?php _e( 'The status of this redirect.', 'edd-csr' ); ?></p>
 				</td>
 			</tr>
-			
+
 		</tbody>
 	</table>
 

@@ -23,16 +23,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					<?php
 					$excluded_products = edd_csr_get_meta_values();
 					$excluded_products = array_filter( $excluded_products );
-				
+
 					$products = get_posts( array( 'post_type' => 'download', 'exclude' => $excluded_products, 'nopaging' => true, 'orderby' => 'title', 'order' => 'ASC' ) ); ?>
 
 					<select name="download" id="download">
 
-						<?php if ( $products ) : ?> 
-						
+						<?php if ( $products ) : ?>
+
 						<option><?php printf( __( 'Select %s', 'edd-csr' ), strtolower( edd_get_label_singular() ) ); ?></option>
 
-						<?php foreach ( $products as $product ) { 
+						<?php foreach ( $products as $product ) {
 						?>
 						<option value="<?php echo absint( $product->ID ); ?>"><?php echo esc_html( get_the_title( $product->ID ) ); ?></option>
 
@@ -44,9 +44,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 						<?php endif; ?>
 
-					</select>	
-					
-					<p class="description"><?php printf( __( 'Select the %s that will trigger the redirect when it is succesfully purchased on it\'s own', 'edd-csr' ), strtolower( edd_get_label_singular() ) ); ?></p>
+					</select>
+
+					<p class="description"><?php printf( __( 'Select the %s that will trigger the redirect when it is succesfully purchased on its own', 'edd-csr' ), strtolower( edd_get_label_singular() ) ); ?></p>
 				</td>
 			</tr>
 
@@ -55,10 +55,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					<label for="edd-page"><?php _e( 'Redirect Page', 'edd-csr' ); ?></label>
 				</th>
 				<td>
-				
+
 					<?php
 						$pages = get_pages();
-						
+
 						if ( $pages ) { ?>
 						<select id="edd-page" name="page">
 							<option><?php _e( 'Select page', 'edd-csr' ); ?></option>
@@ -66,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							foreach ( $pages as $page ) { ?>
 								<option value="<?php echo $page->ID; ?>"><?php echo $page->post_title; ?></option>
 							<?php } ?>
-							
+
 						</select>
 							<?php
 						}
@@ -76,8 +76,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				</td>
 			</tr>
 
-			
-		
+
+
 		</tbody>
 	</table>
 	<?php do_action( 'edd_csr_add_redirect_form_bottom' ); ?>
