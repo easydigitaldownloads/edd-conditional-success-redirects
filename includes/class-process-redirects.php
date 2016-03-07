@@ -1,7 +1,7 @@
 <?php
 
 class EDD_Conditional_Success_Redirects_Process_Redirects {
-	
+
 	public function __construct() {
 		// process standard on-site payment
 		add_action( 'edd_complete_purchase', array( $this, 'process_standard_payment' ) );
@@ -13,9 +13,9 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 		add_action( 'template_redirect', array( $this, 'process_offsite_payment' ) );
 	}
 
-	
+
 		/**
-		 * Process PayPal Standard purchase 
+		 * Process PayPal Standard purchase
 		 * uses edd_payment_confirm_paypal filter
 		 *
 		 * @since  1.0.4
@@ -57,19 +57,19 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 
 			} elseif ( $payment && 'publish' == $payment->post_status ) {
 			 	// payment is complete, it can redirect straight away
-			 	wp_redirect( $this->get_redirect(), 301 ); 
+			 	wp_redirect( $this->get_redirect(), 301 );
 			 	exit;
 			}
 
 			return $content;
 		}
-		
+
 
 		/**
 		 * Payment processing template
 		 * The idea here is to give the website enough time to receive instructions from PayPal as per https://github.com/easydigitaldownloads/Easy-Digital-Downloads/issues/1839
 		 * You should always add the neccessary checks on the redirected page if you are going to show the customer sensitive information
-		 * 
+		 *
 		 * Similar to EDD's /templates/payment-processing.php file
 		 *
 		 * @since  1.0.4
@@ -112,7 +112,7 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 				}
 
 				// redirect
-			 	wp_redirect( $this->get_redirect(), 301 ); 
+			 	wp_redirect( $this->get_redirect(), 301 );
 			 	exit;
 
 			}
@@ -121,7 +121,7 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 			// Customer must "confirm" purchase
 			if ( isset( $_GET['token'] ) && $_GET['token'] && ! isset( $_GET['payment-confirmation'] ) ) {
 				// redirect
-			 	wp_redirect( $this->get_redirect(), 301 ); 
+			 	wp_redirect( $this->get_redirect(), 301 );
 			 	exit;
 			}
 
@@ -135,7 +135,7 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 		 * @param int $payment_id ID of payment
 		*/
 		public function process_standard_payment( $payment_id ) {
-			
+
 			// get cart items from payment ID
 			$cart_items = edd_get_payment_meta_cart_details( $payment_id );
 
@@ -164,21 +164,22 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 
 				$redirect = get_permalink( $redirect );
 
-		 	} 
+		 	}
 
 		 	// redirect
 		 	$obj      = new EDD_Conditional_Success_Redirects_Success_URI();
 		 	$obj->uri = $redirect;
 
 		 	add_filter( 'edd_get_success_page_uri', array( $obj, 'uri' ) );
-
+			add_filter( 'edd_success_page_url', array( $obj, 'uri' ) );
+			
 		}
 
 		/**
 		 * Gets the redirect
 		 *
 		 * @since 1.0.4
-		 * @return string $redirect 
+		 * @return string $redirect
 		*/
 		public function get_redirect() {
 
@@ -221,8 +222,8 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 		 	}
 
 		 	// return the redirect
-		 	return $redirect;	
-		 	
+		 	return $redirect;
+
 		}
 
 
