@@ -1,15 +1,13 @@
 === Easy Digital Downloads - Conditional Success Redirects ===
 
-Plugin URI: https://easydigitaldownloads.com/extensions/conditional-success-redirects/?ref=166
-Author: Andrew Munro, Sumobi
-Author URI: http://sumobi.com/
-
 Allows per-product confirmation pages on successful purchases.
 
 == Changelog ==
 
 = 1.1.2 =
 * Fix: Compatibility issue with EDD Recurring Payments
+* Fix: Various typos
+* Fix: Redirects weren't able to be deleted since the v1.1.1 update
 
 = 1.1.1 =
 * Fix: XSS vulnerability in query args

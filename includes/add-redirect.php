@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 					</select>
 
-					<p class="description"><?php printf( __( 'Select the %s that will trigger the redirect when it is succesfully purchased on its own', 'edd-csr' ), strtolower( edd_get_label_singular() ) ); ?></p>
+					<p class="description"><?php printf( __( 'Select the %s that will trigger the redirect when it is successfully purchased on its own', 'edd-csr' ), strtolower( edd_get_label_singular() ) ); ?></p>
 				</td>
 			</tr>
 
@@ -72,7 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						}
 					?>
 
-					<p class="description"><?php printf( __( 'Select the page to redirect to when the %s above has been succesfully purchased', 'edd-csr' ), strtolower( edd_get_label_singular() ) ); ?></p>
+					<p class="description"><?php printf( __( 'Select the page to redirect to when the %s above has been successfully purchased', 'edd-csr' ), strtolower( edd_get_label_singular() ) ); ?></p>
 				</td>
 			</tr>
 

@@ -1,17 +1,23 @@
 # Copyright (C) 2015 Easy Digital Downloads - Conditional Success Redirects
 # This file is distributed under the same license as the Easy Digital Downloads - Conditional Success Redirects package.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Digital Downloads - Conditional Success Redirects "
-"1.1\n"
+"Project-Id-Version: Easy Digital Downloads - Conditional Success "
+"Redirects\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/edd-csr\n"
-"POT-Creation-Date: 2015-01-08 21:45:17+00:00\n"
+"POT-Creation-Date: 2016-03-08 21:10+1300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Easy Digital Downloads <support@easydigitaldownloads.com>\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: edd-conditional-success-redirects.php:158
 #: edd-conditional-success-redirects.php:181
@@ -36,17 +42,20 @@ msgstr ""
 
 #: includes/add-redirect.php:20 includes/add-redirect.php:33
 #: includes/edit-redirect.php:26 includes/edit-redirect.php:51
+#, php-format
 msgid "Select %s"
 msgstr ""
 
 #: includes/add-redirect.php:43 includes/edit-redirect.php:61
+#, php-format
 msgid "No %s found"
 msgstr ""
 
 #: includes/add-redirect.php:49 includes/edit-redirect.php:67
+#, php-format
 msgid ""
-"Select the %s that will trigger the redirect when it is succesfully "
-"purchased on it's own"
+"Select the %s that will trigger the redirect when it is successfully "
+"purchased on its own"
 msgstr ""
 
 #: includes/add-redirect.php:55 includes/edit-redirect.php:72
@@ -58,8 +67,9 @@ msgid "Select page"
 msgstr ""
 
 #: includes/add-redirect.php:75 includes/edit-redirect.php:92
+#, php-format
 msgid ""
-"Select the page to redirect to when the %s above has been succesfully "
+"Select the page to redirect to when the %s above has been successfully "
 "purchased"
 msgstr ""
 
@@ -96,6 +106,7 @@ msgid "Redirect Deleted"
 msgstr ""
 
 #: includes/class-process-redirects.php:83
+#, php-format
 msgid ""
 "Your purchase is processing. This page will reload automatically in 8 "
 "seconds. If it does not, click <a href=\"%s\">here</a>."
@@ -114,6 +125,7 @@ msgid "Inactive"
 msgstr ""
 
 #: includes/class-redirects-table.php:142
+#, php-format
 msgid "%s"
 msgstr ""
 
@@ -151,10 +163,12 @@ msgid "This plugin"
 msgstr ""
 
 #: includes/class.extension-activation.php:83
+#, php-format
 msgid " requires %sEasy Digital Downloads%s. Please activate it to continue."
 msgstr ""
 
 #: includes/class.extension-activation.php:86
+#, php-format
 msgid " requires %sEasy Digital Downloads%s. Please install it to continue."
 msgstr ""
 
@@ -176,16 +190,6 @@ msgstr ""
 
 #: includes/edit-redirect.php:118
 msgid "Update Redirect"
-msgstr ""
-
-#: includes/post-types.php:21
-msgctxt "post type general name"
-msgid "Redirects"
-msgstr ""
-
-#: includes/post-types.php:22
-msgctxt "post type singular name"
-msgid "Redirect"
 msgstr ""
 
 #: includes/post-types.php:26
@@ -218,24 +222,4 @@ msgstr ""
 
 #: includes/redirect-actions.php:90
 msgid "Trying to cheat or something?"
-msgstr ""
-
-#. Plugin Name of the plugin/theme
-msgid "Easy Digital Downloads - Conditional Success Redirects"
-msgstr ""
-
-#. Plugin URI of the plugin/theme
-msgid "http://sumobi.com/shop/edd-conditional-success-redirects/"
-msgstr ""
-
-#. Description of the plugin/theme
-msgid "Allows per-product confirmation pages on successful purchases"
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "Andrew Munro, Sumobi"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "http://sumobi.com/"
 msgstr ""

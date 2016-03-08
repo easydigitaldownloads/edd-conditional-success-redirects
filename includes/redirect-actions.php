@@ -86,8 +86,9 @@ add_action( 'edd_edit_redirect', 'edd_csr_edit_redirect' );
  */
 function edd_csr_delete_redirect( $data ) {
 
-	if ( ! isset( $data['_wpnonce'] ) || ! wp_verify_nonce( $data['_wpnonce'], 'edd_redirect_nonce' ) )
+	if ( ! isset( $data['_wpnonce'] ) || ! wp_verify_nonce( $data['_wpnonce'], 'edd_redirect_nonce' ) ) {
 		wp_die( __( 'Trying to cheat or something?', 'edd-csr' ), __( 'Error', 'edd-csr' ) );
+	}
 
 	$redirect_id = $data['redirect'];
 
