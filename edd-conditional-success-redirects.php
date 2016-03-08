@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Easy Digital Downloads - Conditional Success Redirects
-Plugin URI: http://sumobi.com/shop/edd-conditional-success-redirects/
+Plugin URI: https://easydigitaldownloads.com/downloads/conditional-success-redirects/
 Description: Allows per-product confirmation pages on successful purchases
 Version: 1.1.2
-Author: Andrew Munro, Sumobi
-Author URI: http://sumobi.com/
+Author: Easy Digital Downloads
+Author URI: https://easydigitaldownloads.com/
 Text Domain: edd-csr
 Domain Path: languages
 */
