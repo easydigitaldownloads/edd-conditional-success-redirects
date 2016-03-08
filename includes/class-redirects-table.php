@@ -190,22 +190,25 @@ class EDD_CSR_Table extends WP_List_Table {
 	 * @return string Data shown in the Name column
 	 */
 	function column_download( $item ) {
+
 		$redirect     = get_post( $item['ID'] );
 		$base         = admin_url( 'edit.php?post_type=download&page=edd-redirects&edd-action=edit_redirect&redirect=' . $item['ID'] );
 		$row_actions  = array();
 
 		$row_actions['edit'] = '<a href="' . esc_url( add_query_arg( array( 'edd-action' => 'edit_redirect', 'redirect' => $redirect->ID ) ) ) . '">' . __( 'Edit', 'edd-csr' ) . '</a>';
 
-		if( strtolower( $item['status'] ) == 'active' )
+		if ( strtolower( $item['status'] ) == 'active' ) {
 			$row_actions['deactivate'] = '<a href="' . esc_url( add_query_arg( array( 'edd-action' => 'deactivate_redirect', 'redirect' => $redirect->ID ) ) ) . '">' . __( 'Deactivate', 'edd-csr' ) . '</a>';
-		else
+		} else {
 			$row_actions['activate'] = '<a href="' . esc_url( add_query_arg( array( 'edd-action' => 'activate_redirect', 'redirect' => $redirect->ID ) ) ) . '">' . __( 'Activate', 'edd-csr' ) . '</a>';
+		}
 
-		$row_actions['delete'] = '<a href="' . wp_nonce_url( esc_url( add_query_arg( array( 'edd-action' => 'delete_redirect', 'redirect' => $redirect->ID ) ) ), 'edd_redirect_nonce' ) . '">' . __( 'Delete', 'edd-csr' ) . '</a>';
+		$row_actions['delete'] = '<a href="' . esc_url( wp_nonce_url( add_query_arg( array( 'edd-action' => 'delete_redirect', 'redirect' => $redirect->ID ) ), 'edd_redirect_nonce' ) ) . '">' . __( 'Delete', 'edd-csr' ) . '</a>';
 
 		$row_actions = apply_filters( 'edd_csr_redirect_row_actions', $row_actions, $redirect );
 
 		return $item['download'] . $this->row_actions( $row_actions );
+
 	}
 
 	/**
