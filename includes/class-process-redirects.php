@@ -44,10 +44,10 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 
 			$payment = get_post( $payment_id );
 
-			// if payment is pending, load the payment processing template
-			if ( $payment && 'pending' == $payment->post_status ) {
+			// if payment is pending or private (buy now button behavior), load the payment processing template
+			if ( $payment && ( 'pending' == $payment->post_status || 'private' == $payment->post_status ) ) {
 
-				// Payment is still pending so show processing indicator to fix the Race Condition, issue #
+				// Payment is still pending or private so show processing indicator to fix the Race Condition
 				ob_start();
 
 				// load the payment processing template if the payment is still pending
