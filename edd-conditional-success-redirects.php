@@ -3,7 +3,7 @@
 Plugin Name: Easy Digital Downloads - Conditional Success Redirects
 Plugin URI: https://easydigitaldownloads.com/downloads/conditional-success-redirects/
 Description: Allows per-product confirmation pages on successful purchases
-Version: 1.1.2
+Version: 1.1.3
 Author: Easy Digital Downloads
 Author URI: https://easydigitaldownloads.com/
 Text Domain: edd-csr
@@ -50,7 +50,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		 */
 		private function setup_globals() {
 
-			$this->version    = '1.1.2';
+			$this->version    = '1.1.3';
 
 			// paths
 			$this->file         = __FILE__;
