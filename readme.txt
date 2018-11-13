@@ -4,6 +4,9 @@ Allows per-product confirmation pages on successful purchases.
 
 == Changelog ==
 
+= 1.1.4 =
+* Fix: Redirect breaks PayPal Express purchase confirmation when using Recurring Payments
+
 = 1.1.3 =
 * Fix: Redirect not working when download purchased via PayPal buy now buttons
 
