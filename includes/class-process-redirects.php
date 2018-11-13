@@ -117,9 +117,15 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 
 			}
 
-			// PayPal Express
-			// Customer must "confirm" purchase
-			if ( isset( $_GET['token'] ) && $_GET['token'] && ! isset( $_GET['payment-confirmation'] ) ) {
+			// PayPal Express - Customer must "confirm" purchase
+			if ( isset( $_GET['token'] ) && $_GET['token'] && ! isset( $_GET['payment-confirmation'] ) && empty( $_GET['edd-confirm'] ) ) {
+				// redirect
+			 	wp_redirect( $this->get_redirect(), 301 );
+			 	exit;
+			}
+
+			// PayPal Express for Recurring Payments - Customer must "confirm" purchase
+			if ( empty( $_GET['edd-confirm'] ) && empty( $_GET['payment_id'] ) ) {
 				// redirect
 			 	wp_redirect( $this->get_redirect(), 301 );
 			 	exit;
