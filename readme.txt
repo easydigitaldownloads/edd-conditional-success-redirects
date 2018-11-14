@@ -4,6 +4,9 @@ Allows per-product confirmation pages on successful purchases.
 
 == Changelog ==
 
+= 1.1.5 =
+* Fix: Redirect loop on purchase confirmation for non PayPal Express transactions
+
 = 1.1.4 =
 * Fix: Redirect breaks PayPal Express purchase confirmation when using Recurring Payments
 
