@@ -110,7 +110,7 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 			$redirect = true;
 
 			// Detect if we are on the confirmation page for PayPal Express - Do not redirect if so
-			if ( isset( $_GET['token'] ) && $_GET['token'] && ! isset( $_GET['payment-confirmation'] ) ) {
+			if ( ! empty( $_GET['token'] ) && ! empty( $_GET['payment-confirmation'] ) && 'paypalexpress' == $_GET['payment-confirmation'] ) {
 				$redirect = false;
 			}
 
