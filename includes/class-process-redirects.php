@@ -56,9 +56,14 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 				$content = ob_get_clean();
 
 			} elseif ( $payment && 'publish' == $payment->post_status ) {
-			 	// payment is complete, it can redirect straight away
-			 	wp_redirect( $this->get_redirect(), 301 );
-			 	exit;
+
+				$redirect_url = $this->get_redirect();
+
+				if( $redirect_url ) {
+				 	// payment is complete, it can redirect straight away
+				 	wp_redirect( $redirect_url, 301 );
+				 	exit;
+				}
 			}
 
 			return $content;
@@ -102,34 +107,31 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 				return;
 			}
 
-			// normal offsite redirect
-			if ( isset( $_GET['payment-confirmation'] ) && $_GET['payment-confirmation'] ) {
+			$redirect = true;
 
-				// return if using PayPal express. Customer needs to "confirm" the payment first before redirecting
-				// also redirects if paypal standard was used. It has its own processing function
-				if ( 'paypalexpress' == $_GET['payment-confirmation'] || 'paypal' == $_GET['payment-confirmation'] ) {
-					return;
+			// Detect if we are on the confirmation page for PayPal Express - Do not redirect if so
+			if ( isset( $_GET['token'] ) && $_GET['token'] && ! isset( $_GET['payment-confirmation'] ) ) {
+				$redirect = false;
+			}
+
+			// Detect if we are on the confirmation page for PayPal Express for Recurring Payments - Do not redirect if so
+			if ( ! empty( $_GET['edd-confirm'] ) ) {
+				$redirect = false;
+			}
+
+			if( $redirect ) {
+				
+				$redirect_url = $this->get_redirect();
+
+				if( $redirect_url ) {
+	
+					wp_redirect( $redirect_url, 301 );				
+					exit;
+	
 				}
-
-				// redirect
-			 	wp_redirect( $this->get_redirect(), 301 );
-			 	exit;
-
 			}
 
-			// PayPal Express - Customer must "confirm" purchase
-			if ( isset( $_GET['token'] ) && $_GET['token'] && ! isset( $_GET['payment-confirmation'] ) && empty( $_GET['edd-confirm'] ) ) {
-				// redirect
-			 	wp_redirect( $this->get_redirect(), 301 );
-			 	exit;
-			}
-
-			// PayPal Express for Recurring Payments - Customer must "confirm" purchase
-			if ( empty( $_GET['edd-confirm'] ) && empty( $_GET['payment_id'] ) ) {
-				// redirect
-			 	wp_redirect( $this->get_redirect(), 301 );
-			 	exit;
-			}
+			// Do nothing if we got here
 
 		}
 
@@ -211,7 +213,7 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 			}
 
 		 	// redirect by default to the normal EDD success page
-		 	$redirect = apply_filters( 'edd_csr_redirect', get_permalink( edd_get_option( 'success_page' ) ), $download_id );
+		 	$redirect = apply_filters( 'edd_csr_redirect', false, $download_id );
 
 		 	// check if the redirect is active
 			if ( edd_csr_is_redirect_active( edd_csr_get_redirect_id( $download_id ) ) ) {
