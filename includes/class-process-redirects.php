@@ -110,7 +110,7 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 			$custom_redirect_url = $this->get_redirect();
 			$edd_success_page_url = get_permalink( edd_get_option( 'success_page' ) );
 
-			if ( $custom_redirect_url == $edd_success_page_url ) {
+			if ( trailingslashit( $custom_redirect_url ) == trailingslashit( $edd_success_page_url ) ) {
 				return;
 			}
 
