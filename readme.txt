@@ -4,6 +4,9 @@ Allows per-product confirmation pages on successful purchases.
 
 == Changelog ==
 
+= 1.1.6 =
+* Fix: Redirect loop if EDD core success page URL matches the redirect URL
+
 = 1.1.5 =
 * Fix: Redirect loop on purchase confirmation for non PayPal Express transactions
 
