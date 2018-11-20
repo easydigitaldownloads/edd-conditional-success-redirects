@@ -107,6 +107,13 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 				return;
 			}
 
+			$custom_redirect_url = $this->get_redirect();
+			$edd_success_page_url = get_permalink( edd_get_option( 'success_page' ) );
+
+			if ( trailingslashit( $custom_redirect_url ) == trailingslashit( $edd_success_page_url ) ) {
+				return;
+			}
+
 			$redirect = true;
 
 			// Detect if we are on the confirmation page for PayPal Express - Do not redirect if so
