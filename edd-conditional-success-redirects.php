@@ -1,13 +1,13 @@
 <?php
-/*
-Plugin Name: Easy Digital Downloads - Conditional Success Redirects
-Plugin URI: https://easydigitaldownloads.com/downloads/conditional-success-redirects/
-Description: Allows per-product confirmation pages on successful purchases
-Version: 1.1.6
-Author: Easy Digital Downloads
-Author URI: https://easydigitaldownloads.com/
-Text Domain: edd-csr
-Domain Path: languages
+/**
+ * Plugin Name: Easy Digital Downloads - Conditional Success Redirects
+ * Plugin URI: https://easydigitaldownloads.com/downloads/conditional-success-redirects/
+ * Description: Allows per-product confirmation pages on successful purchases
+ * Version: 1.1.6
+ * Author: Sandhills Development, LLC
+ * Author URI: https://sandhillsdev.com/
+ * Text Domain: edd-csr
+ * Domain Path: languages
 */
 
 // Exit if accessed directly
@@ -86,7 +86,7 @@ if ( ! class_exists( 'EDD_Conditional_Success_Redirects' ) ) {
 		private function licensing() {
 			// check if EDD_License class exists
 			if ( class_exists( 'EDD_License' ) ) {
-				$license = new EDD_License( __FILE__, 'Conditional Success Redirects', $this->version, 'Andrew Munro' );
+				$license = new EDD_License( __FILE__, 'Conditional Success Redirects', $this->version, 'Sandhills Development, LLC', null, null, 84640 );
 			}
 		}
 
