@@ -4,6 +4,10 @@ Allows per-product confirmation pages on successful purchases.
 
 == Changelog ==
 
+= 1.1.7 - July 12, 2021 =
+* Refactor: Update plugin author name to "Sandhills Development, LLC."
+* Dev: Compatibility with EDD 3.0.
+
 = 1.1.6 =
 * Fix: Redirect loop if EDD core success page URL matches the redirect URL
 

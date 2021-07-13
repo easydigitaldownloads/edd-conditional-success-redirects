@@ -42,10 +42,10 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 				$payment_id = edd_get_purchase_id_by_key( $session['purchase_key'] );
 			}
 
-			$payment = get_post( $payment_id );
+			$payment = edd_get_payment( $payment_id );
 
 			// if payment is pending or private (buy now button behavior), load the payment processing template
-			if ( $payment && ( 'pending' == $payment->post_status || 'private' == $payment->post_status ) ) {
+			if ( $payment && ( 'pending' == edd_get_payment_status( $payment ) || 'private' == $payment->status ) ) {
 
 				// Payment is still pending or private so show processing indicator to fix the Race Condition
 				ob_start();
@@ -55,7 +55,7 @@ class EDD_Conditional_Success_Redirects_Process_Redirects {
 
 				$content = ob_get_clean();
 
-			} elseif ( $payment && 'publish' == $payment->post_status ) {
+			} elseif ( $payment && edd_is_payment_complete( $payment->ID) ) {
 
 				$redirect_url = $this->get_redirect();
 

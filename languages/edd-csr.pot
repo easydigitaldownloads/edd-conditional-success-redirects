@@ -1,30 +1,46 @@
-# Copyright (C) 2015 Easy Digital Downloads - Conditional Success Redirects
-# This file is distributed under the same license as the Easy Digital Downloads - Conditional Success Redirects package.
-#, fuzzy
+# Copyright (C) 2021 Sandhills Development, LLC
+# This file is distributed under the same license as the Easy Digital Downloads - Conditional Success Redirects plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Digital Downloads - Conditional Success "
-"Redirects\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/edd-csr\n"
-"POT-Creation-Date: 2016-03-08 21:10+1300\n"
+"Project-Id-Version: Easy Digital Downloads - Conditional Success Redirects 1.1.7\n"
+"Report-Msgid-Bugs-To: https://easydigitaldownloads.com/support\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Easy Digital Downloads <support@easydigitaldownloads.com>\n"
-"X-Generator: Poedit 1.8.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SearchPath-0: .\n"
+"POT-Creation-Date: 2021-07-12T10:51:12+01:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: edd-csr\n"
+
+#. Plugin Name of the plugin
+msgid "Easy Digital Downloads - Conditional Success Redirects"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://easydigitaldownloads.com/downloads/conditional-success-redirects/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Allows per-product confirmation pages on successful purchases"
+msgstr ""
+
+#. Author of the plugin
+msgid "Sandhills Development, LLC"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://sandhillsdev.com/"
+msgstr ""
 
 #: edd-conditional-success-redirects.php:158
 #: edd-conditional-success-redirects.php:181
 msgid "Conditional Success Redirects"
 msgstr ""
 
-#: edd-conditional-success-redirects.php:181 includes/post-types.php:23
+#: edd-conditional-success-redirects.php:181
+#: includes/post-types.php:23
 msgid "Add New"
 msgstr ""
 
@@ -32,45 +48,46 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: includes/add-redirect.php:12 includes/post-types.php:24
+#: includes/add-redirect.php:12
+#: includes/post-types.php:24
 msgid "Add New Redirect"
 msgstr ""
 
-#: includes/add-redirect.php:12 includes/edit-redirect.php:19
+#: includes/add-redirect.php:12
+#: includes/edit-redirect.php:19
 msgid "Go Back"
 msgstr ""
 
-#: includes/add-redirect.php:20 includes/add-redirect.php:33
-#: includes/edit-redirect.php:26 includes/edit-redirect.php:51
-#, php-format
+#: includes/add-redirect.php:20
+#: includes/add-redirect.php:33
+#: includes/edit-redirect.php:26
+#: includes/edit-redirect.php:51
 msgid "Select %s"
 msgstr ""
 
-#: includes/add-redirect.php:43 includes/edit-redirect.php:61
-#, php-format
+#: includes/add-redirect.php:43
+#: includes/edit-redirect.php:61
 msgid "No %s found"
 msgstr ""
 
-#: includes/add-redirect.php:49 includes/edit-redirect.php:67
-#, php-format
-msgid ""
-"Select the %s that will trigger the redirect when it is successfully "
-"purchased on its own"
+#: includes/add-redirect.php:49
+#: includes/edit-redirect.php:67
+msgid "Select the %s that will trigger the redirect when it is successfully purchased on its own"
 msgstr ""
 
-#: includes/add-redirect.php:55 includes/edit-redirect.php:72
+#: includes/add-redirect.php:55
+#: includes/edit-redirect.php:72
 msgid "Redirect Page"
 msgstr ""
 
-#: includes/add-redirect.php:64 includes/edit-redirect.php:81
+#: includes/add-redirect.php:64
+#: includes/edit-redirect.php:81
 msgid "Select page"
 msgstr ""
 
-#: includes/add-redirect.php:75 includes/edit-redirect.php:92
-#, php-format
-msgid ""
-"Select the page to redirect to when the %s above has been successfully "
-"purchased"
+#: includes/add-redirect.php:75
+#: includes/edit-redirect.php:92
+msgid "Select the page to redirect to when the %s above has been successfully purchased"
 msgstr ""
 
 #: includes/add-redirect.php:88
@@ -105,27 +122,21 @@ msgstr ""
 msgid "Redirect Deleted"
 msgstr ""
 
-#: includes/class-process-redirects.php:83
-#, php-format
-msgid ""
-"Your purchase is processing. This page will reload automatically in 8 "
-"seconds. If it does not, click <a href=\"%s\">here</a>."
-msgstr ""
-
 #: includes/class-redirects-table.php:124
 msgid "All"
 msgstr ""
 
-#: includes/class-redirects-table.php:125 includes/edit-redirect.php:101
+#: includes/class-redirects-table.php:125
+#: includes/edit-redirect.php:101
 msgid "Active"
 msgstr ""
 
-#: includes/class-redirects-table.php:126 includes/edit-redirect.php:102
+#: includes/class-redirects-table.php:126
+#: includes/edit-redirect.php:102
 msgid "Inactive"
 msgstr ""
 
 #: includes/class-redirects-table.php:142
-#, php-format
 msgid "%s"
 msgstr ""
 
@@ -133,54 +144,43 @@ msgstr ""
 msgid "Redirect"
 msgstr ""
 
-#: includes/class-redirects-table.php:144 includes/edit-redirect.php:97
+#: includes/class-redirects-table.php:144
+#: includes/edit-redirect.php:97
 msgid "Status"
 msgstr ""
 
-#: includes/class-redirects-table.php:197
+#: includes/class-redirects-table.php:198
 msgid "Edit"
 msgstr ""
 
-#: includes/class-redirects-table.php:200
+#: includes/class-redirects-table.php:201
 msgid "Deactivate"
 msgstr ""
 
-#: includes/class-redirects-table.php:202
+#: includes/class-redirects-table.php:203
 msgid "Activate"
 msgstr ""
 
-#: includes/class-redirects-table.php:204
-#: includes/class-redirects-table.php:236
+#: includes/class-redirects-table.php:206
+#: includes/class-redirects-table.php:239
 msgid "Delete"
 msgstr ""
 
-#: includes/class-redirects-table.php:249
+#: includes/class-redirects-table.php:252
 msgid "No redirects found."
-msgstr ""
-
-#: includes/class.extension-activation.php:47
-msgid "This plugin"
-msgstr ""
-
-#: includes/class.extension-activation.php:83
-#, php-format
-msgid " requires %sEasy Digital Downloads%s. Please activate it to continue."
-msgstr ""
-
-#: includes/class.extension-activation.php:86
-#, php-format
-msgid " requires %sEasy Digital Downloads%s. Please install it to continue."
 msgstr ""
 
 #: includes/edit-redirect.php:12
 msgid "Something went wrong."
 msgstr ""
 
-#: includes/edit-redirect.php:12 includes/redirect-actions.php:90
+#: includes/edit-redirect.php:12
+#: includes/redirect-actions.php:90
 msgid "Error"
 msgstr ""
 
-#: includes/edit-redirect.php:19 includes/post-types.php:25
+#: includes/edit-redirect.php:19
+#: includes/post-types.php:25
 msgid "Edit Redirect"
 msgstr ""
 
@@ -190,6 +190,16 @@ msgstr ""
 
 #: includes/edit-redirect.php:118
 msgid "Update Redirect"
+msgstr ""
+
+#: includes/post-types.php:21
+msgctxt "post type general name"
+msgid "Redirects"
+msgstr ""
+
+#: includes/post-types.php:22
+msgctxt "post type singular name"
+msgid "Redirect"
 msgstr ""
 
 #: includes/post-types.php:26
